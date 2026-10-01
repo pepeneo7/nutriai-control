@@ -54,6 +54,7 @@ export default function Home() {
   const [authEmail, setAuthEmail] = useState('');
   const [authPassword, setAuthPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [authError, setAuthError] = useState('');
 
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
@@ -666,9 +667,24 @@ export default function Home() {
               <input type="email" value={authEmail} onChange={(e) => setAuthEmail(e.target.value)} placeholder="tucorreo@email.com" className={`w-full mt-1 p-3 rounded-xl text-sm border focus:outline-none focus:ring-2 focus:ring-indigo-500 ${theme === 'dark' ? 'bg-slate-950 border-slate-800 text-white' : 'bg-slate-50 border-slate-200 text-slate-900'}`} required />
             </div>
             <div>
-              <label className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Contraseña</label>
-              <input type="password" value={authPassword} onChange={(e) => setAuthPassword(e.target.value)} placeholder="••••••••" className={`w-full mt-1 p-3 rounded-xl text-sm border focus:outline-none focus:ring-2 focus:ring-indigo-500 ${theme === 'dark' ? 'bg-slate-950 border-slate-800 text-white' : 'bg-slate-50 border-slate-200 text-slate-900'}`} />
+            <label className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Contraseña</label>
+            <div className="relative mt-1">
+              <input 
+                type={showPassword ? "text" : "password"} 
+                value={authPassword} 
+                onChange={(e) => setAuthPassword(e.target.value)} 
+                placeholder="••••••••" 
+                className={`w-full p-3 pr-10 rounded-xl text-sm border focus:outline-none focus:ring-2 focus:ring-indigo-500 ${theme === 'dark' ? 'bg-slate-950 border-slate-800 text-white' : 'bg-slate-50 border-slate-200 text-slate-900'}`} 
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 text-xs focus:outline-none"
+              >
+                {showPassword ? '🙈' : '👁️'}
+              </button>
             </div>
+          </div>
             <button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-3 rounded-xl font-medium transition text-sm shadow-lg shadow-indigo-600/20">{isSignUp ? 'Crear Cuenta' : 'Iniciar Sesión'}</button>
           </form>
           <button onClick={() => setIsSignUp(!isSignUp)} className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline block mx-auto pt-2">
