@@ -57,4 +57,5 @@ export async function POST(request: Request) {
     console.error('Error en API analyze:', error);
     return NextResponse.json({ error: 'Error al procesar con IA: ' + error.message }, { status: 500 });
   }
+  //limpieza
 }
